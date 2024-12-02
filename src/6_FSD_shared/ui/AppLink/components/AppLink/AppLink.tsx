@@ -1,26 +1,26 @@
+import type { appColorType, fontSizeType, fontWeightType } from "@customTypes/style.types"
 import { classNamesHelp } from "@helpers/classNamesHelp/classNamesHelp"
-import React, { memo, useState, useCallback } from "react"
+import { colorMapper } from "@helpers/colorMapper/colorMapper.helper"
+import { fontSizeMapper, fontWeightMapper } from "@helpers/fontMapper/fontMapper.helper"
+import { TypedMemo } from "@sharedProviders/TypedMemo"
+import { useCallback, useState } from "react"
 import { Link, type LinkProps } from "react-router-dom"
 import styles from "./AppLink.module.scss"
-import type { fontSizeType, fontWeightType, appColorType } from "@customTypes/style.types"
-import { fontSizeMapper, fontWeightMapper } from "@helpers/fontMapper/fontMapper.helper"
-import { colorMapper } from "@helpers/colorMapper/colorMapper.helper"
 
 export type AppLinkProps = {
-	inverted?: boolean
-	fontsize?: fontSizeType
+	fontSize?: fontSizeType
 	fontWeight?: fontWeightType
 	color?: appColorType
 	colorHover?: appColorType
 } & LinkProps
 
-const Component = React.forwardRef<HTMLAnchorElement, AppLinkProps>((props, ref) => {
+export const AppLink = TypedMemo((props: AppLinkProps) => {
 	const {
 		className,
 		to,
 		children,
 		target,
-		fontsize = "m",
+		fontSize = "m",
 		fontWeight = "medium",
 		color = "main-gray",
 		colorHover,
@@ -39,14 +39,13 @@ const Component = React.forwardRef<HTMLAnchorElement, AppLinkProps>((props, ref)
 
 	return (
 		<Link
-			ref={ref}
 			onMouseEnter={onHoverHandler}
 			onMouseLeave={onLeaveHandler}
 			target={target}
 			to={to}
 			className={classNamesHelp(styles.AppLink, {}, [
 				className,
-				fontSizeMapper(fontsize),
+				fontSizeMapper(fontSize),
 				fontWeightMapper(fontWeight),
 				colorMapper(hover ? colorHover ?? color : color)
 			])}
@@ -56,5 +55,3 @@ const Component = React.forwardRef<HTMLAnchorElement, AppLinkProps>((props, ref)
 		</Link>
 	)
 })
-
-export const AppLink = memo<AppLinkProps>(Component)

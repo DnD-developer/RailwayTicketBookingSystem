@@ -10,5 +10,6 @@ export {
 	getRouteMainContacts,
 	getRouteMainHeader,
 	getRouteMainHowItWorks,
-	getRouteSuccess
-} from "./helpers/gettersRoutesPaths.helpers"
+	getRouteSuccess,
+	getRouteTicket
+} from "./helpers/gettersRoutesPaths.helper"

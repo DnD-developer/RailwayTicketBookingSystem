@@ -17,16 +17,40 @@
 
 	color: var(--main-dark);
 
-	font: var(--font-m);
-
 	&::placeholder {
 		color: var(--main-gray);
 		font: inherit;
 	}
 }
 
+.Input.withIcon {
+	padding-right: 40px;
+}
+
 .wrapper {
+	position: relative;
 	width: 100%;
+}
+
+.icon {
+	position: absolute;
+	top: 50%;
+
+	right: 15px;
+	width: auto;
+	height: 30px;
+
+	transform: translateY(-50%);
+
+	color: var(--main-gray);
+}
+
+.icon-cursor {
+	cursor: pointer;
+
+	&:hover {
+		opacity: 0.7;
+	}
 }
 
 .error {

@@ -1,5 +1,12 @@
 @import "~normalize.css/normalize.css";
 
+.html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
 li {
 	list-style: none;
 }

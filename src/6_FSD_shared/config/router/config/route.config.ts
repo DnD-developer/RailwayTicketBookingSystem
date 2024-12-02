@@ -43,6 +43,11 @@ export const routeConfig: Record<PagesNames, routeInfoType> = {
 		path: RoutePaths.ChooseTrain,
 		inHeader: false
 	},
+	[PagesNames.Ticket]: {
+		name: PagesNames.Ticket,
+		path: RoutePaths.Ticket,
+		inHeader: false
+	},
 	[PagesNames.Success]: {
 		name: PagesNames.Success,
 		path: RoutePaths.Success,

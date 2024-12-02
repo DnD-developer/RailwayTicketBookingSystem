@@ -23,10 +23,6 @@
 	cursor: pointer;
 }
 
-.option.focus {
-	color: var(--red);
-}
-
 .list {
 	display: flex;
 
@@ -39,18 +35,6 @@
 	&:focus {
 		outline: none;
 	}
-}
-
-.option {
-	width: 100%;
-
-	padding: 0 10px;
-
-	background-color: var(--bg-color);
-
-	color: var(--primary-color);
-
-	cursor: pointer;
 }
 
 .label {

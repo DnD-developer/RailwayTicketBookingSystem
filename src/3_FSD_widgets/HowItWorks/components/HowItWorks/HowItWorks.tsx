@@ -1,18 +1,18 @@
-import styles from "./HowItWorks.module.scss"
-import { memo } from "react"
-import { classNamesHelp } from "@helpers/classNamesHelp/classNamesHelp"
-import { VStack } from "@ui/Stack"
-import { ContainerLayout } from "@ui/layout"
-import { Advantages } from "../Advantages/Advantages"
-import { HeaderHowItWorks } from "../HeaderHowItWorks/HeaderHowItWorks"
-import { Background } from "@ui/Background"
 import { BackgroundHowItWorks } from "@assets/index"
 import { getRouteMainHowItWorks } from "@config/router"
+import { classNamesHelp } from "@helpers/classNamesHelp/classNamesHelp"
+import { TypedMemo } from "@sharedProviders/TypedMemo"
+import { Background } from "@ui/Background"
+import { ContainerLayout } from "@ui/layout"
+import { VStack } from "@ui/Stack"
+import { Advantages } from "../Advantages/Advantages"
+import { HeaderHowItWorks } from "../HeaderHowItWorks/HeaderHowItWorks"
+import styles from "./HowItWorks.module.scss"
 
 type HowItWorksProps = {
 	className?: string
 }
-export const HowItWorks = memo<HowItWorksProps>(props => {
+export const HowItWorks = TypedMemo((props: HowItWorksProps) => {
 	const { className } = props
 
 	return (

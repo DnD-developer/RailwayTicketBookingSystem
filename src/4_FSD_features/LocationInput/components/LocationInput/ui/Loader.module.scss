@@ -1,0 +1,8 @@
+.Loader {
+	display: block !important;
+	position: absolute;
+
+	z-index: var(--z-index-input-loader);
+	top: 30%;
+	right: 50px;
+}

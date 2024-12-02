@@ -1,27 +1,33 @@
+import type { appColorType, fontSizeType, fontWeightType } from "@customTypes/style.types"
 import type { Mods } from "@helpers/classNamesHelp/classNamesHelp"
 import { classNamesHelp } from "@helpers/classNamesHelp/classNamesHelp"
+import { colorMapper } from "@helpers/colorMapper/colorMapper.helper"
+import { fontSizeMapper, fontWeightMapper } from "@helpers/fontMapper/fontMapper.helper"
+import { TypedMemo } from "@sharedProviders/TypedMemo"
 import type React from "react"
-import { type ButtonHTMLAttributes, memo, useMemo, useState, useCallback } from "react"
+import { type ButtonHTMLAttributes, useCallback, useMemo, useState } from "react"
 import styles from "./Button.module.scss"
-import type { fontWeightType, fontSizeType } from "@customTypes/style.types"
-import { fontWeightMapper, fontSizeMapper } from "@helpers/fontMapper/fontMapper.helper"
 
-type themesType = "defaultLight" | "defaultDark" | "transparentDark" | "transparentLight"
+type themesType = "defaultLight" | "defaultDark" | "transparentDark" | "transparentLight" | "clear"
 
 type widthType = "s" | "m"
 type heightType = "s" | "m"
 
-type ButtonProps = {
+type ButtonCustomProps = {
 	theme: themesType
-	width: widthType
-	height: heightType
+	width?: widthType
+	height?: heightType
+	color?: appColorType
 	onClick: () => void
 	textUppercase?: boolean
 	fontWeight?: fontWeightType
 	fontSize?: fontSizeType
 	disabled?: boolean
 	"data-testid"?: string
-} & ButtonHTMLAttributes<HTMLButtonElement>
+}
+
+type ButtonProps = ButtonCustomProps &
+	Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof ButtonCustomProps>
 
 const heightMapper: Record<heightType, string> = {
 	s: styles.heightS,
@@ -33,7 +39,7 @@ const widthMapper: Record<widthType, string> = {
 	m: styles.widthM
 }
 
-export const Button = memo<ButtonProps>(props => {
+export const Button = TypedMemo((props: ButtonProps) => {
 	const {
 		children,
 		className,
@@ -42,6 +48,7 @@ export const Button = memo<ButtonProps>(props => {
 		onClick,
 		width,
 		height,
+		color,
 		"data-testid": dataTestId = "button-ui",
 		fontWeight = "ultra-fat",
 		textUppercase,
@@ -91,10 +98,11 @@ export const Button = memo<ButtonProps>(props => {
 			className={classNamesHelp(styles.Button, mods, [
 				className,
 				styles[theme],
-				heightMapper[height],
-				widthMapper[width],
+				height ? heightMapper[height] : "",
+				width ? widthMapper[width] : "",
 				fontWeightMapper(fontWeight),
-				fontSizeMapper(fontSize)
+				fontSizeMapper(fontSize),
+				color ? colorMapper(color) : ""
 			])}
 			{...otherProps}
 		>

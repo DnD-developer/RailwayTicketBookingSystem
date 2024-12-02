@@ -1,9 +1,9 @@
-import styles from "./NavLinks.module.scss"
-import { memo } from "react"
-import { HStack } from "@ui/Stack"
-import { ContainerLayout } from "@ui/layout"
-import { AppLink } from "@ui/AppLink"
 import { routeConfig } from "@config/router"
+import { AppLink } from "@ui/AppLink"
+import { ContainerLayout } from "@ui/layout"
+import { HStack } from "@ui/Stack"
+import { memo } from "react"
+import styles from "./NavLinks.module.scss"
 
 export const NavLinks = memo(() => {
 	return (
@@ -24,7 +24,7 @@ export const NavLinks = memo(() => {
 									<AppLink
 										key={link.path}
 										to={link.path}
-										fontsize="l"
+										fontSize="l"
 										colorHover={"gold"}
 										color={"main-light"}
 										fontWeight={"think"}

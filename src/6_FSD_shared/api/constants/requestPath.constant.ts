@@ -1,3 +1,5 @@
 export enum RequestPaths {
-	Subscribe = "/subscribe"
+	Subscribe = "/subscribe",
+	Directions = "/routes",
+	Cities = "/routes/cities"
 }

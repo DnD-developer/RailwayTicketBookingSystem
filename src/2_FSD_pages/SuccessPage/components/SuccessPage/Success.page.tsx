@@ -10,7 +10,7 @@ const SuccessPage = memo<SuccessPageProps>(props => {
 
 	return (
 		<div className={classNamesHelp("", {}, [className, "pageStyle"])}>
-			<Header />
+			<Header typeBackground={"end"} />
 			<h1>Success</h1>
 		</div>
 	)

@@ -1,10 +1,11 @@
+import type { appColorType, fontSizeType, fontWeightType } from "@customTypes/style.types"
 import type { Mods } from "@helpers/classNamesHelp/classNamesHelp"
 import { classNamesHelp } from "@helpers/classNamesHelp/classNamesHelp"
-import { memo, useMemo } from "react"
-import styles from "./Text.module.scss"
-import type { fontSizeType, fontWeightType, appColorType } from "@customTypes/style.types"
-import { fontSizeMapper, fontWeightMapper } from "@helpers/fontMapper/fontMapper.helper"
 import { colorMapper } from "@helpers/colorMapper/colorMapper.helper"
+import { fontSizeMapper, fontWeightMapper } from "@helpers/fontMapper/fontMapper.helper"
+import { TypedMemo } from "@sharedProviders/TypedMemo"
+import { useMemo } from "react"
+import styles from "./Text.module.scss"
 
 type titleType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
 
@@ -24,9 +25,10 @@ type TextProps = {
 	colorText?: appColorType
 	classNamesText?: string
 	classNameTitle?: string
+	textTransform?: "capitalize" | "uppercase"
 }
 
-export const Text = memo<TextProps>(props => {
+export const Text = TypedMemo((props: TextProps) => {
 	const {
 		className,
 		text,
@@ -40,7 +42,8 @@ export const Text = memo<TextProps>(props => {
 		fontWeightTitle = "fat",
 		colorText = "main-gray",
 		TitleType = "h2",
-		colorTitle = "main-gray"
+		colorTitle = "main-gray",
+		textTransform = "normal"
 	} = props
 
 	const modsText = useMemo<Mods>(() => {
@@ -54,6 +57,7 @@ export const Text = memo<TextProps>(props => {
 					className={classNamesHelp("", {}, [
 						classNameTitle,
 						styles[align],
+						styles[textTransform],
 						fontSizeMapper(fontSizeTitle),
 						fontWeightMapper(fontWeightTitle),
 						colorMapper(colorTitle)
@@ -67,6 +71,7 @@ export const Text = memo<TextProps>(props => {
 					className={classNamesHelp("", modsText, [
 						styles[align],
 						classNamesText,
+						styles[textTransform],
 						fontSizeMapper(fontSizeText),
 						fontWeightMapper(fontWeightText),
 						colorMapper(colorText)

@@ -114,3 +114,13 @@
 		color: var(--main-dark);
 	}
 }
+
+.clear {
+	border: none;
+
+	background: transparent;
+
+	&:hover {
+		opacity: 0.8;
+	}
+}

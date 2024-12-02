@@ -1,0 +1,16 @@
+.DateInput {
+	position: relative;
+	width: 100%;
+	max-width: 325px;
+
+	.picker {
+		position: absolute;
+		z-index: var(--z-index-modal);
+		bottom: -20px;
+		left: 50%;
+
+		transform: translate(-50%, 100%);
+
+		box-shadow: var(--shadow-hover);
+	}
+}

@@ -1,13 +1,13 @@
 import type { Mods } from "@helpers/classNamesHelp/classNamesHelp"
 import { classNamesHelp } from "@helpers/classNamesHelp/classNamesHelp"
+import { TypedMemo } from "@sharedProviders/TypedMemo"
 import type { DetailedHTMLProps, HTMLAttributes, PropsWithChildren } from "react"
-import { memo } from "react"
 import styles from "./Flex.module.scss"
 
 type justifyType = "spaceBetween" | "spaceAround" | "flexEnd" | "flexStart" | "center"
 type alignType = "center" | "flexEnd" | "flexStart"
 type directionType = "column" | "row"
-type gapType = "gapXS" | "gapS" | "gapM" | "gapL" | "gapXL"
+type gapType = "gapXXS" | "gapXS" | "gapS" | "gapM" | "gapL" | "gapXL"
 type tagType =
 	| "ul"
 	| "nav"
@@ -51,6 +51,7 @@ const directionMap: Record<directionType, string> = {
 }
 
 const gapMap: Record<gapType, string> = {
+	gapXXS: styles.gapXXS,
 	gapXS: styles.gapXS,
 	gapS: styles.gapS,
 	gapM: styles.gapM,
@@ -58,7 +59,7 @@ const gapMap: Record<gapType, string> = {
 	gapXL: styles.gapXL
 }
 
-export const Flex = memo<FlexProps>(props => {
+export const Flex = TypedMemo((props: FlexProps) => {
 	const {
 		className,
 		justify = "flexStart",

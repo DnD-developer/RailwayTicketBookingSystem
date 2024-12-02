@@ -1,15 +1,16 @@
-import type { ReactNode } from "react"
-import { memo, useCallback, useState, useEffect } from "react"
-import { SubscriptionForm } from "../SubscriptionForm/SubscriptionForm"
-import { useToSubscribeMutation } from "../../api/toSubscribe/toSubscribeRtkq"
-import { Modal } from "@ui/Modal"
+import { TypedMemo } from "@sharedProviders/TypedMemo"
 import { FallbackLoader } from "@ui/FallbackLoader"
+import { Modal } from "@ui/Modal"
 import { Text } from "@ui/Text"
+import type { ReactNode } from "react"
+import { useCallback, useEffect, useState } from "react"
+import { useToSubscribeMutation } from "../../api/toSubscribeRtkq"
+import { SubscriptionForm } from "../SubscriptionForm/SubscriptionForm"
 
 type SubscriptionProps = {
 	className?: string
 }
-export const Subscription = memo<SubscriptionProps>(props => {
+export const Subscription = TypedMemo((props: SubscriptionProps) => {
 	const { className } = props
 
 	const [toSubscribe, response] = useToSubscribeMutation()

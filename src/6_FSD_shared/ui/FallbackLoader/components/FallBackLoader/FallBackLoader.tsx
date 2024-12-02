@@ -1,21 +1,20 @@
 import { classNamesHelp } from "@helpers/classNamesHelp/classNamesHelp"
-import { type HtmlHTMLAttributes, memo } from "react"
+import { TypedMemo } from "@sharedProviders/TypedMemo"
+import { type HtmlHTMLAttributes } from "react"
 import { BarLoader } from "react-spinners"
-import styles from "./FallBackLoader.module.scss"
 import { VStack } from "../../../Stack"
+import styles from "./FallBackLoader.module.scss"
 
-type FallbackLoaderProps = {
-	classNames?: string
-} & HtmlHTMLAttributes<HTMLDivElement>
+type FallbackLoaderProps = {} & HtmlHTMLAttributes<HTMLDivElement>
 
-export const FallbackLoader = memo<FallbackLoaderProps>(props => {
-	const { classNames, ...otherProps } = props
+export const FallbackLoader = TypedMemo((props: FallbackLoaderProps) => {
+	const { className, ...otherProps } = props
 
 	return (
 		<VStack
 			align={"center"}
 			justify={"center"}
-			className={classNamesHelp(styles.FallBackLoader, {}, [classNames])}
+			className={classNamesHelp(styles.FallBackLoader, {}, [className])}
 			{...otherProps}
 		>
 			<BarLoader

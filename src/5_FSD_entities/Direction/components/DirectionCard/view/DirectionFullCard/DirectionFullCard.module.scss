@@ -1,0 +1,29 @@
+.DirectionFullCard {
+	position: relative;
+	max-width: 960px;
+
+	background-color: var(--main-light);
+
+	box-shadow: var(--shadow-hover);
+}
+
+.s-height {
+	height: 270px;
+}
+
+.m-height {
+	height: 360px;
+}
+
+.directions-info {
+	height: 100%;
+	padding-top: 50px;
+}
+
+.price-info {
+	max-width: 250px;
+	height: 100%;
+	padding-top: 41px;
+	padding-right: 22px;
+	padding-bottom: 30px;
+}

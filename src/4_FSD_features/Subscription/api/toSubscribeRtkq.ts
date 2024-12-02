@@ -1,6 +1,6 @@
 import { rtkBaseApi } from "@api/instances/rtkBase.api"
 import { getSubscribeRequestPaths } from "@api/libs/gettersRequestPaths.helper"
-import type { responseSubscription } from "../../types/responseSubscription.type"
+import type { responseSubscription } from "../types/responseSubscription.type"
 
 const toSubscribeRtkq = rtkBaseApi.injectEndpoints({
 	endpoints: build => ({
@@ -12,8 +12,7 @@ const toSubscribeRtkq = rtkBaseApi.injectEndpoints({
 				}
 			}
 		})
-	}),
-	overrideExisting: false
+	})
 })
 
 export const { useToSubscribeMutation } = toSubscribeRtkq

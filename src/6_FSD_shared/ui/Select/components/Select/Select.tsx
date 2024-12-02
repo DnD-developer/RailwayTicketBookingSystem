@@ -1,15 +1,15 @@
 import {
 	Listbox as HListBox,
 	ListboxButton as HListBoxButton,
-	ListboxOption as HListBoxOption,
 	ListboxOptions as HListBoxOptions
 } from "@headlessui/react"
 import type { AnchorPropsWithSelection } from "@headlessui/react/dist/internal/floating"
 import type { Mods } from "@helpers/classNamesHelp/classNamesHelp"
 import { classNamesHelp } from "@helpers/classNamesHelp/classNamesHelp"
-import { Fragment, useCallback, useMemo } from "react"
-import styles from "./Select.module.scss"
 import { TypedMemo } from "@sharedProviders/TypedMemo"
+import { useCallback, useMemo } from "react"
+import { Option } from "../Option/Option"
+import styles from "./Select.module.scss"
 
 export type OptionType<T extends string> = {
 	value: T
@@ -37,32 +37,6 @@ export const Select = TypedMemo(<T extends string>(props: SelectProps<T>) => {
 		},
 		[onChange]
 	)
-
-	const optionList = useMemo(() => {
-		return options.map(opt => (
-			<HListBoxOption
-				as={Fragment}
-				key={opt.value}
-				value={opt.value}
-			>
-				{({ focus }) => {
-					return (
-						<li
-							className={classNamesHelp(
-								styles.option,
-								{
-									[styles.focus]: focus
-								},
-								[]
-							)}
-						>
-							{opt.content}
-						</li>
-					)
-				}}
-			</HListBoxOption>
-		))
-	}, [options])
 
 	const mods: Mods = useMemo(() => {
 		return {
@@ -93,7 +67,12 @@ export const Select = TypedMemo(<T extends string>(props: SelectProps<T>) => {
 				className={styles.list}
 				anchor={anchor}
 			>
-				{optionList}
+				{options.map(opt => (
+					<Option
+						option={opt}
+						key={opt.value}
+					/>
+				))}
 			</HListBoxOptions>
 		</HListBox>
 	)

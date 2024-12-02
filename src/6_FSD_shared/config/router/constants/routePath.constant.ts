@@ -6,6 +6,7 @@ export enum RoutePaths {
 	MainReviews = "/#reviews",
 	MainContacts = "/#contacts",
 	ChooseTrain = "/choose-train",
+	Ticket = "/ticket/:id",
 	Success = "/success",
 	NotFound = "/*"
 }

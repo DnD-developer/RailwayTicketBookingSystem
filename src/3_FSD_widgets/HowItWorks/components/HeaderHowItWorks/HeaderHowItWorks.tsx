@@ -1,10 +1,10 @@
-import { memo } from "react"
+import { getRouteNameHowItWorks } from "@config/router/helpers/getterRoutesNames.helper"
+import { LEARN_MORE_LINK } from "@constants/links.constant"
+import { AppLink } from "@ui/AppLink"
 import { HStack } from "@ui/Stack"
 import { Text } from "@ui/Text"
-import { getRouteNameHowItWorks } from "@config/router/helpers/getterRoutesNames.helper"
-import { AppLink } from "@ui/AppLink"
+import { memo } from "react"
 import styles from "./HeaderHowItWorks.module.scss"
-import { LEARN_MORE_LINK } from "@constants/links.constant"
 
 type HeaderHowItWorksProps = {
 	className?: string
@@ -27,7 +27,7 @@ export const HeaderHowItWorks = memo<HeaderHowItWorksProps>(props => {
 			/>
 			<AppLink
 				fontWeight={"ultra-fat"}
-				fontsize={"m"}
+				fontSize={"m"}
 				color={"main-light"}
 				to={LEARN_MORE_LINK}
 				target={"_blank"}

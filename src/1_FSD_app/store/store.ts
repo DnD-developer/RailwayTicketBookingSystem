@@ -1,4 +1,6 @@
 import { rtkBaseApi } from "@api/instances/rtkBase.api"
+import { directionsListSliceReducers } from "@entities/Direction"
+import { formForSearchDirectionsReducer } from "@features/FillingFormForSearchOfDirections"
 import type { Reducer, ReducersMapObject } from "@reduxjs/toolkit"
 import { configureStore } from "@reduxjs/toolkit"
 import type { reducerManagerType } from "./reducerManager"
@@ -22,6 +24,8 @@ export function createReduxStore(
 	asyncReducers?: ReducersMapObject<mainStateAsyncMap>
 ) {
 	const staticReducer: ReducersMapObject<mainStateStaticMap> = {
+		formForSearchOfDirectionsStateMap: formForSearchDirectionsReducer,
+		directionsList: directionsListSliceReducers,
 		[rtkBaseApi.reducerPath]: rtkBaseApi.reducer
 	}
 

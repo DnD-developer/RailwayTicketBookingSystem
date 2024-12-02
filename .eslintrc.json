@@ -35,6 +35,7 @@
 		"@arthurgeron/react-usememo/require-usememo": [
 			2,
 			{
+				"strict": false,
 				"ignoredPropNames": ["on", "off"]
 			}
 		],

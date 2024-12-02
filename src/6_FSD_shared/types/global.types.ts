@@ -7,9 +7,7 @@ export type DeepPartial<T> =
 		}
 	:	T
 
-export type OptionalRecord<K extends keyof any, T> = {
-	[P in K]?: T
-}
+export type OptionalRecord<K extends keyof any, T> = Partial<Record<K, T>>
 
 export type AsyncThunkConfig = {
 	state?: unknown

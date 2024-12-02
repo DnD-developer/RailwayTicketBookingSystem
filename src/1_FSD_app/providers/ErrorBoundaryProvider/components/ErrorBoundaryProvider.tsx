@@ -28,14 +28,11 @@ export class ErrorBoundaryProvider extends React.Component<
 	render(): React.ReactNode {
 		const { hasError } = this.state
 		const { children } = this.props
-		if (hasError) {
-			return (
+
+		return hasError ?
 				<Suspense>
 					<></>
 				</Suspense>
-			)
-		}
-
-		return children
+			:	children
 	}
 }

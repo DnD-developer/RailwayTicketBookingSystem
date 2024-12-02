@@ -1,16 +1,25 @@
-import type { ReactNode, ImgHTMLAttributes } from "react"
-import { useLayoutEffect, useState, memo } from "react"
+import type { ImgHTMLAttributes, ReactNode } from "react"
+import { memo, useLayoutEffect, useState } from "react"
 
 type AppImageProps = {
 	src: string
 	alt?: string
 	fallback?: ReactNode
 	errorFallback?: ReactNode
+	testIsLoading?: boolean
 	className?: string
 } & ImgHTMLAttributes<HTMLImageElement>
 
 export const AppImage = memo<AppImageProps>(props => {
-	const { className, alt = "image", errorFallback, fallback, src, ...otherProps } = props
+	const {
+		className,
+		alt = "image",
+		errorFallback,
+		fallback,
+		src,
+		testIsLoading = false,
+		...otherProps
+	} = props
 
 	const [isLoading, setIsLoading] = useState(true)
 	const [isError, setIsError] = useState(false)
@@ -27,7 +36,7 @@ export const AppImage = memo<AppImageProps>(props => {
 		}
 	}, [src])
 
-	if (isLoading && fallback) {
+	if ((isLoading || testIsLoading) && fallback) {
 		return fallback
 	}
 

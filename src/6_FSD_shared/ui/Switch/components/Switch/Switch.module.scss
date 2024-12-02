@@ -1,0 +1,45 @@
+.Switch {
+	position: relative;
+	width: 72px;
+	height: 19px;
+
+	transition: all 0.3s;
+
+	border-radius: 10px;
+
+	cursor: pointer;
+}
+
+.trigger {
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+
+	left: 0;
+	width: 28px;
+	height: 28px;
+
+	transition: all 0.3s;
+
+	border-radius: 50%;
+}
+
+.on {
+	background-color: var(--gold);
+
+	span {
+		transform: translate(52px, -50%);
+
+		background-color: var(--accent-orange);
+	}
+}
+
+.off {
+	background-color: var(--main-light);
+
+	span {
+		transform: translate(-8px, -50%);
+
+		background-color: var(--main-gray);
+	}
+}

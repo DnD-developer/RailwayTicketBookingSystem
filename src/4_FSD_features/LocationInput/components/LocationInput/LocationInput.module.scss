@@ -1,0 +1,22 @@
+.LocationInput {
+	position: relative;
+	width: 100%;
+	max-width: 325px;
+
+	text-transform: capitalize;
+}
+
+.list {
+	position: absolute;
+
+	z-index: var(--z-index-input-loader);
+
+	top: 70px;
+	left: 0;
+
+	max-height: 200px;
+
+	overflow-y: auto;
+
+	border-radius: var(--br-button);
+}

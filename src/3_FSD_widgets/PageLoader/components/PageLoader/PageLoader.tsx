@@ -1,14 +1,14 @@
-import { memo } from "react"
-import styles from "./PageLoader.module.scss"
 import { classNamesHelp } from "@helpers/classNamesHelp/classNamesHelp"
-import { HStack } from "@ui/Stack"
-import { Overlay } from "@ui/Overlay"
+import { TypedMemo } from "@sharedProviders/TypedMemo"
 import { FallbackLoader } from "@ui/FallbackLoader/components/FallBackLoader/FallBackLoader"
+import { Overlay } from "@ui/Overlay"
+import { HStack } from "@ui/Stack"
+import styles from "./PageLoader.module.scss"
 
 type PageLoaderProps = {
 	className?: string
 }
-export const PageLoader = memo<PageLoaderProps>(props => {
+export const PageLoader = TypedMemo((props: PageLoaderProps) => {
 	const { className } = props
 
 	return (

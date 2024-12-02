@@ -1,11 +1,9 @@
+import { ReviewerMan, ReviewerWoman } from "@assets/index"
+import { classNamesHelp } from "@helpers/classNamesHelp/classNamesHelp"
 import { memo, useMemo } from "react"
 import Slider from "react-slick"
-import { classNamesHelp } from "@helpers/classNamesHelp/classNamesHelp"
-import { ReviewsItem } from "./ui/ReviewsItem/ReviewsItem"
-import { ReviewerWoman, ReviewerMan } from "@assets/index"
 import styles from "./ReviewsSlider.module.scss"
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
+import { ReviewsItem } from "./ui/ReviewsItem/ReviewsItem"
 
 type ReviewsSliderProps = {
 	className?: string
@@ -20,7 +18,8 @@ export const ReviewsSlider = memo<ReviewsSliderProps>(props => {
 			speed: 500,
 			slidesToShow: 2,
 			slidesToScroll: 1,
-			lazyload: true
+			lazyload: true,
+			arrows: false
 		}
 	}, [])
 

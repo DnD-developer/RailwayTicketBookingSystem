@@ -6,6 +6,7 @@ export enum PagesNames {
 	MainReviews = "Отзывы",
 	MainContacts = "Контакты",
 	ChooseTrain = "ChooseTrain",
+	Ticket = "Ticket",
 	Success = "Success",
 	NotFound = "NotFound"
 }

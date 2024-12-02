@@ -27,3 +27,6 @@ export const getRouteChooseTrain = () => {
 export const getRouteSuccess = () => {
 	return { route: RoutePaths.Success }
 }
+export const getRouteTicket = (id: string) => {
+	return { route: RoutePaths.Ticket.replace(/:id/, id) }
+}

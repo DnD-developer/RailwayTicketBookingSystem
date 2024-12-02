@@ -1,9 +1,9 @@
+import { classNamesHelp } from "@helpers/classNamesHelp/classNamesHelp"
+import { AppLink } from "@ui/AppLink"
+import { HStack } from "@ui/Stack"
 import type { FC, SVGProps } from "react"
 import { memo } from "react"
 import styles from "./ContactLink.module.scss"
-import { classNamesHelp } from "@helpers/classNamesHelp/classNamesHelp"
-import { HStack } from "@ui/Stack"
-import { AppLink } from "@ui/AppLink"
 
 type ContactLinkProps = {
 	Icon: FC<SVGProps<SVGSVGElement>>
@@ -33,7 +33,7 @@ export const ContactLink = memo<ContactLinkProps>(props => {
 				colorHover={"gold"}
 				to={link}
 				color={"light-gray"}
-				fontsize={"m"}
+				fontSize={"m"}
 				fontWeight={"think"}
 			>
 				{linkText}

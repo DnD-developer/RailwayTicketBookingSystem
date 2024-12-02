@@ -46,6 +46,10 @@
 	width: 100%;
 }
 
+.gapXXS {
+	gap: var(--gap-xxs);
+}
+
 .gapXS {
 	gap: var(--gap-xs);
 }
@@ -64,4 +68,12 @@
 
 .gapXL {
 	gap: var(--gap-xl);
+}
+
+.story-container {
+	height: 300px;
+
+	border: 1px dashed var(--main-gray);
+
+	color: var(--main-gray);
 }

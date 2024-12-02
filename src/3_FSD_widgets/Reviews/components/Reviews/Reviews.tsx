@@ -1,17 +1,17 @@
-import styles from "./Reviews.module.scss"
-import { memo } from "react"
-import { classNamesHelp } from "@helpers/classNamesHelp/classNamesHelp"
-import { Text } from "@ui/Text"
+import { getRouteMainReviews } from "@config/router"
 import { getRouteNameReviews } from "@config/router/helpers/getterRoutesNames.helper"
+import { classNamesHelp } from "@helpers/classNamesHelp/classNamesHelp"
+import { TypedMemo } from "@sharedProviders/TypedMemo"
 import { ContainerLayout } from "@ui/layout"
 import { VStack } from "@ui/Stack"
+import { Text } from "@ui/Text"
 import { ReviewsSlider } from "../ReviewsSlider/ReviewsSlider"
-import { getRouteMainReviews } from "@config/router"
+import styles from "./Reviews.module.scss"
 
 type ReviewsProps = {
 	className?: string
 }
-export const Reviews = memo<ReviewsProps>(props => {
+export const Reviews = TypedMemo((props: ReviewsProps) => {
 	const { className } = props
 
 	return (

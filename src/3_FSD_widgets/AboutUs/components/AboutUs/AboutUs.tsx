@@ -1,16 +1,16 @@
-import styles from "./AboutUs.module.scss"
-import { classNamesHelp } from "@helpers/classNamesHelp/classNamesHelp"
-import { ContainerLayout } from "@ui/layout"
-import { Text } from "@ui/Text"
-import { getRouteNameAboutUs } from "@config/router/helpers/getterRoutesNames.helper"
-import { memo } from "react"
-import { VStack } from "@ui/Stack"
 import { getRouteMainAboutUs } from "@config/router"
+import { getRouteNameAboutUs } from "@config/router/helpers/getterRoutesNames.helper"
+import { classNamesHelp } from "@helpers/classNamesHelp/classNamesHelp"
+import { TypedMemo } from "@sharedProviders/TypedMemo"
+import { ContainerLayout } from "@ui/layout"
+import { VStack } from "@ui/Stack"
+import { Text } from "@ui/Text"
+import styles from "./AboutUs.module.scss"
 
 type AboutUsProps = {
 	className?: string
 }
-export const AboutUs = memo<AboutUsProps>(props => {
+export const AboutUs = TypedMemo((props: AboutUsProps) => {
 	const { className } = props
 
 	return (
