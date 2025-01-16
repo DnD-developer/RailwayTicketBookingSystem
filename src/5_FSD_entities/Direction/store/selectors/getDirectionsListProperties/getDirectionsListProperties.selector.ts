@@ -5,6 +5,12 @@ import { directionsListAdapter } from "../../slices/directionsList.slice"
 import type { directionsListStateMap } from "../../storeTypes/directionsListState.map"
 import { getDirectionsListSelector } from "../getDirectionsList/getDirectionsList.selector"
 
+export const [useGetDirectionsListIsInitSelector, getDirectionsListIsInitSelector] =
+	buildCreateSelector(
+		[getDirectionsListSelector],
+		(state?: directionsListStateMap) => state?._inited || false
+	)
+
 export const [useGetDirectionsListIsLoadingSelector, getDirectionsListIsLoadingSelector] =
 	buildCreateSelector(
 		[getDirectionsListSelector],

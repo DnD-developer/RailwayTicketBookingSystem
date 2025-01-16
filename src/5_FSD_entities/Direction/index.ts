@@ -13,6 +13,7 @@ export { fetchDirectionsThunk } from "./store/thunks/fetchDirections/fetchDirect
 
 export {
 	directionsListSliceReducers,
+	directionsListSliceActions,
 	useDirectionsListSliceUseActions
 } from "./store/slices/directionsList.slice"
 
@@ -21,7 +22,9 @@ export {
 	useGetDirectionsListIsLoadingSelector,
 	useGetDirectionsListDataSelector,
 	useGetDirectionsListItemSelector,
-	useGetDirectionsListTotalCountSelector
+	useGetDirectionsListTotalCountSelector,
+	useGetDirectionsListIsInitSelector,
+	getDirectionsListIsInitSelector
 } from "./store/selectors/getDirectionsListProperties/getDirectionsListProperties.selector"
 
 export { DirectionCard } from "./components/DirectionCard/DirectionCard"

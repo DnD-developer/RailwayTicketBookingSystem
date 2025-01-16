@@ -11,21 +11,11 @@ const getCitiesByPatternRtkq = rtkBaseApi.injectEndpoints({
 				}
 			},
 			keepUnusedDataFor: 1
-			// transformResponse: (
-			// 	response: {
-			// 		_id: cityDataType["_id"]
-			// 		name: cityDataType["name"]
-			// 	}[]
-			// ) => {
-			// 	if (response.length) {
-			// 		return response.map(city => ({ id: city._id, name: city.name }))
-			// 	}
-			//
-			// 	return []
-			// }
 		})
 	})
 })
 
 export const { useGetCitiesByPatternQuery } = getCitiesByPatternRtkq
 export const getCitiesByPattern = getCitiesByPatternRtkq.endpoints.getCitiesByPattern.initiate
+
+// To Feature оптимизировать запрос. Удаление неактуальных.

@@ -1,18 +1,23 @@
 import { getRouteChooseTrain } from "@config/router"
 import { BreadcrumbsLine } from "@features/BreadcrumbsLine"
+import { useFormForSearchDirectionsActions } from "@features/FillingFormForSearchOfDirections"
 import { LastTickets } from "@features/LastTickets"
 import { useAppDispatch } from "@hooks/useAppDispatch.hook"
 import { ContainerLayout } from "@ui/layout"
 import { Page } from "@ui/Page"
 import { HStack, VStack } from "@ui/Stack"
 import { DirectionsList } from "@widgets/DirectionsList"
-import { DisplaySettingsDirectionsList } from "@widgets/DisplaySettingsDirectionsList"
-import { fetchDirectionsListThunk } from "@widgets/DisplaySettingsDirectionsList/store/thunks/fetchDirectionsListThunk/fetchDirectionsList.thunk"
+import {
+	DisplaySettingsDirectionsList,
+	fetchDirectionsListThunk,
+	fetchInitialDirectionListThunk
+} from "@widgets/DisplaySettingsDirectionsList"
 import { FilterDirections } from "@widgets/FilterDirections"
 import { Footer } from "@widgets/Footer"
 import { Header } from "@widgets/Header"
 import { SearchDirections } from "@widgets/SearchDirections"
 import { memo, useCallback, useEffect, useMemo } from "react"
+import { useSearchParams } from "react-router-dom"
 import styles from "./ChooseTrain.module.scss"
 
 const pagePath = getRouteChooseTrain()
@@ -23,11 +28,17 @@ const ChooseTrainPage = memo(() => {
 	const onSearchHandler = useCallback(() => {
 		dispatch(fetchDirectionsListThunk())
 	}, [dispatch])
+	const { clearParametres } = useFormForSearchDirectionsActions()
+
+	const [searchParams] = useSearchParams()
 
 	useEffect(() => {
-		onSearchHandler()
-		//eslint-disable-next-line
-	}, [])
+		dispatch(fetchInitialDirectionListThunk(searchParams))
+
+		return () => {
+			clearParametres()
+		}
+	}, [clearParametres, dispatch, searchParams])
 
 	const contentPage = (
 		<>

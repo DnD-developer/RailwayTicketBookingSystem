@@ -4,10 +4,27 @@ import type { mainStateMap } from "@store/storeTypes/mainState.map"
 import {
 	getDirectionsListDataSelector,
 	getDirectionsListErrorSelector,
+	getDirectionsListIsInitSelector,
 	getDirectionsListIsLoadingSelector,
 	getDirectionsListItemSelector,
 	getDirectionsListTotalCountSelector
 } from "./getDirectionsListProperties.selector"
+
+describe("getDirectionsListIsInitSelector", () => {
+	test("get state", () => {
+		const state: DeepPartial<mainStateMap> = {
+			directionsList: {
+				_inited: true
+			}
+		}
+		expect(getDirectionsListIsInitSelector()(state as mainStateMap)).toBe(true)
+	})
+
+	test("get withOut state", () => {
+		const state: DeepPartial<mainStateMap> = {}
+		expect(getDirectionsListIsInitSelector()(state as mainStateMap)).toBe(false)
+	})
+})
 
 describe("getDirectionsListIsLoadingSelector", () => {
 	test("get state", () => {

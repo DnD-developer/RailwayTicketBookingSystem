@@ -1,6 +1,6 @@
-export type paramsType<T extends string | number> = Record<string, T>
+import type { paramsType } from "@customTypes/common.types"
 
-export function createQueryParams<T extends string | number>(params?: paramsType<T>) {
+export function createQueryParams<T extends string | number | boolean>(params?: paramsType<T>) {
 	const searchParams = new URLSearchParams(window.location.search)
 
 	if (!params) return null
@@ -14,6 +14,6 @@ export function createQueryParams<T extends string | number>(params?: paramsType
 	return `?${searchParams}`
 }
 
-export function addQueryParams<T extends string | number>(params?: paramsType<T>) {
+export function addQueryParams<T extends string | number | boolean>(params?: paramsType<T>) {
 	window.history.pushState(undefined, "", createQueryParams(params))
 }

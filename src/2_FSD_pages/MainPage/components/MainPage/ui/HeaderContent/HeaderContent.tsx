@@ -1,6 +1,8 @@
 import { TitleIcon } from "@assets/index"
 import { getRouteChooseTrain } from "@config/router"
+import { useGetFormForSearchOfDirectionsDataForRequestSelector } from "@features/FillingFormForSearchOfDirections"
 import { classNamesHelp } from "@helpers/classNamesHelp/classNamesHelp"
+import { createQueryParams } from "@helpers/createLinkWithParams/createLinkWithParams.helper"
 import { HStack } from "@ui/Stack"
 import { SearchDirections } from "@widgets/SearchDirections"
 import { memo, useCallback } from "react"
@@ -15,9 +17,11 @@ export const HeaderContent = memo<HeaderContentProps>(props => {
 
 	const navigate = useNavigate()
 
+	const formParametres = useGetFormForSearchOfDirectionsDataForRequestSelector()
+
 	const onSearchHandler = useCallback(() => {
-		navigate(getRouteChooseTrain().route)
-	}, [navigate])
+		navigate(createQueryParams(getRouteChooseTrain().route, formParametres))
+	}, [formParametres, navigate])
 
 	return (
 		<HStack
