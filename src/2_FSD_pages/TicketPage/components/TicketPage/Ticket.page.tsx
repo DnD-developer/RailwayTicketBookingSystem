@@ -1,33 +1,53 @@
 import { getRouteTicket } from "@config/router"
-import { useGetDirectionsListItemSelector } from "@entities/Direction"
+import { useGetDirectionsListDataSelector } from "@entities/Direction"
 import { BreadcrumbsLine } from "@features/BreadcrumbsLine"
+import { useCurrentDirectionActions } from "@features/FillingFormCurrentDirection"
+import { parseFormDataFromUrlHelper } from "@features/FillingFormForSearchOfDirections"
+import { useAppDispatch } from "@hooks/useAppDispatch.hook"
+import { useInitialEffect } from "@hooks/useInitialEffect.hook"
 import { TypedMemo } from "@sharedProviders/TypedMemo"
 import { ContainerLayout } from "@ui/layout"
 import { Page } from "@ui/Page"
-import { VStack } from "@ui/Stack"
-import { Text } from "@ui/Text"
+import { fetchInitialDirectionListThunk } from "@widgets/DisplaySettingsDirectionsList"
 import { Footer } from "@widgets/Footer"
 import { Header } from "@widgets/Header"
-import { useMemo } from "react"
+import { useCallback, useEffect, useMemo } from "react"
 import { useParams } from "react-router"
+import { useSearchParams } from "react-router-dom"
+import { PageContent } from "../PageContent/PageContent"
 
 const TicketPage = TypedMemo(() => {
 	const { id } = useParams<{ id: string }>()
-
-	const ticketData = useGetDirectionsListItemSelector(id || "")
-
 	const pagePath = getRouteTicket(id || "")
 
-	let content = <></>
+	const dispatch = useAppDispatch()
+	const [searchParams] = useSearchParams()
 
-	if (ticketData) {
-		content = (
-			<>
-				<Text title={ticketData.departure.from.city.name} />
-				<Text title={ticketData.departure.to.city.name} />
-			</>
-		)
-	}
+	const { setCurrentDirection } = useCurrentDirectionActions()
+
+	const { additionalData: dataIds } = parseFormDataFromUrlHelper<{
+		directionId: string
+	}>(searchParams)
+
+	const directions = useGetDirectionsListDataSelector()
+
+	useInitialEffect(
+		useCallback(() => {
+			dispatch(fetchInitialDirectionListThunk({ searchParams, namePage: pagePath.route }))
+		}, [dispatch, pagePath.route, searchParams])
+	)
+
+	useEffect(() => {
+		if (directions?.length) {
+			const currentDirection = directions.filter(
+				direction => direction?.departure?._id === dataIds?.directionId
+			)?.[0]
+
+			if (currentDirection) {
+				setCurrentDirection(currentDirection)
+			}
+		}
+	}, [dataIds?.directionId, directions, setCurrentDirection])
 
 	const pageContent = (
 		<>
@@ -36,9 +56,9 @@ const TicketPage = TypedMemo(() => {
 				pagePath={pagePath.route}
 			></Header>
 			<BreadcrumbsLine stage={"tickets"} />
-			<VStack>
-				<ContainerLayout>{content}</ContainerLayout>
-			</VStack>
+			<ContainerLayout>
+				<PageContent />
+			</ContainerLayout>
 		</>
 	)
 

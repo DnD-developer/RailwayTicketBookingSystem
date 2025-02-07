@@ -25,6 +25,7 @@ type TextProps = {
 	colorText?: appColorType
 	classNamesText?: string
 	classNameTitle?: string
+	widthMax?: boolean
 	textTransform?: "capitalize" | "uppercase"
 }
 
@@ -42,6 +43,7 @@ export const Text = TypedMemo((props: TextProps) => {
 		fontWeightTitle = "fat",
 		colorText = "main-gray",
 		TitleType = "h2",
+		widthMax = false,
 		colorTitle = "main-gray",
 		textTransform = "normal"
 	} = props
@@ -51,7 +53,11 @@ export const Text = TypedMemo((props: TextProps) => {
 	}, [title])
 
 	return (
-		<div className={classNamesHelp(styles.TextWrapper, {}, [className])}>
+		<div
+			className={classNamesHelp(styles.TextWrapper, { [styles.widthMax]: widthMax }, [
+				className
+			])}
+		>
 			{title ?
 				<TitleType
 					className={classNamesHelp("", {}, [

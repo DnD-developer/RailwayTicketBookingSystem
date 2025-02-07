@@ -8,12 +8,14 @@ import ArrowToIcon from "./icons/arrow-to.svg"
 import ArrowUpIcon from "./icons/arrow-up.svg"
 import CalendarIcon from "./icons/calendar.svg"
 import ChangeIcon from "./icons/change.svg"
+import ClockIcon from "./icons/clock.svg"
 import ConditionerIcon from "./icons/conditioner.svg"
 import CupeIcon from "./icons/cupe.svg"
 import ExpressIcon from "./icons/express.svg"
 import FacebookIcon from "./icons/facebook.svg"
 import GlobusIcon from "./icons/globus.svg"
 import GoogleIcon from "./icons/google.svg"
+import LinensIcon from "./icons/linens.svg"
 import LinkedinIcon from "./icons/linkedin.svg"
 import LocationIcon from "./icons/location.svg"
 import LogoIcon from "./icons/logo.svg"
@@ -29,6 +31,7 @@ import SitPlaceIcon from "./icons/sit-place.svg"
 import SkypeIcon from "./icons/skype.svg"
 import ThreeDotsIcon from "./icons/three-dots.svg"
 import TitleIcon from "./icons/title.svg"
+import TrainSmallIcon from "./icons/train-small.svg"
 import TrainIcon from "./icons/train.svg"
 import TwitterIcon from "./icons/twitter.svg"
 import WifiIcon from "./icons/wifi.svg"
@@ -80,5 +83,8 @@ export {
 	ConditionerIcon,
 	ArrowLeftIcon,
 	ArrowRightIcon,
-	ThreeDotsIcon
+	ThreeDotsIcon,
+	TrainSmallIcon,
+	ClockIcon,
+	LinensIcon
 }

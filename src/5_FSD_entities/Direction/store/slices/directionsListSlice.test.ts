@@ -3,54 +3,20 @@ import { describe, expect, jest, test } from "@jest/globals"
 import type { directionGeneralDataFromServerType } from "../../types/directionData.type"
 import type { directionsListStateMap } from "../storeTypes/directionsListState.map"
 import { fetchDirectionsThunk } from "../thunks/fetchDirections/fetchDirections.thunk"
-import { directionsListSliceActions, directionsListSliceReducers } from "./directionsList.slice"
+import { directionsListReducers } from "./directionsList.slice"
 
 jest.mock("uid", () => ({
 	uid: jest.fn().mockReturnValue("testID")
 }))
 
 describe("directionsListSliceTest", () => {
-	test("directionsListInit init already", () => {
-		const state: DeepPartial<directionsListStateMap> = {
-			_inited: true
-		}
-
-		const { directionsListInit } = directionsListSliceActions
-
-		const newState = directionsListSliceReducers(
-			state as directionsListStateMap,
-			directionsListInit()
-		)
-
-		expect(newState).toEqual({
-			_inited: true
-		})
-	})
-
-	test("directionsListInit not init yet", () => {
-		const state: DeepPartial<directionsListStateMap> = {
-			_inited: false
-		}
-
-		const { directionsListInit } = directionsListSliceActions
-
-		const newState = directionsListSliceReducers(
-			state as directionsListStateMap,
-			directionsListInit()
-		)
-
-		expect(newState).toEqual({
-			_inited: true
-		})
-	})
-
 	test("pending", () => {
 		const state: DeepPartial<directionsListStateMap> = {
 			isLoading: false,
 			error: ""
 		}
 
-		const newState = directionsListSliceReducers(
+		const newState = directionsListReducers(
 			state as directionsListStateMap,
 			fetchDirectionsThunk.pending("", { from_city_id: "1", to_city_id: "2" })
 		)
@@ -72,7 +38,7 @@ describe("directionsListSliceTest", () => {
 			entities: {}
 		}
 
-		const newState = directionsListSliceReducers(
+		const newState = directionsListReducers(
 			state as directionsListStateMap,
 			fetchDirectionsThunk.fulfilled(
 				{
@@ -104,7 +70,7 @@ describe("directionsListSliceTest", () => {
 			error: undefined
 		}
 
-		const newState = directionsListSliceReducers(
+		const newState = directionsListReducers(
 			state as directionsListStateMap,
 			fetchDirectionsThunk.rejected(
 				null,

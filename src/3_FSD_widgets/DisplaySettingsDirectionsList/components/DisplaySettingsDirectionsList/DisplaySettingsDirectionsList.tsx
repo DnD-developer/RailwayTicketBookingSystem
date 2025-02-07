@@ -23,10 +23,11 @@ import { fetchDirectionsListThunk } from "../../store/thunks/fetchDirectionsList
 
 type DisplaySettingsDirectionsListProps = {
 	className?: string
+	namePage?: string
 } & PropsWithChildren
 export const DisplaySettingsDirectionsList = TypedMemo(
 	(props: DisplaySettingsDirectionsListProps) => {
-		const { className, children: directionsList } = props
+		const { className, children: directionsList, namePage } = props
 
 		const dispatch = useAppDispatch()
 
@@ -40,9 +41,9 @@ export const DisplaySettingsDirectionsList = TypedMemo(
 
 		const onSearchHandler = useCallback(() => {
 			if (formParametres && isValidForm) {
-				dispatch(fetchDirectionsListThunk())
+				dispatch(fetchDirectionsListThunk({ namePage: namePage }))
 			}
-		}, [dispatch, formParametres, isValidForm])
+		}, [dispatch, formParametres, isValidForm, namePage])
 
 		const quantity = useMemo(
 			() => Math.ceil(total / (formParametres?.limit || SHOW_LIMITS[0])),

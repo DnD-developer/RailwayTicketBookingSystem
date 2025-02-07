@@ -5,14 +5,14 @@ import { TypedMemo } from "@sharedProviders/TypedMemo"
 import { HStack, VStack } from "@ui/Stack"
 import { Text } from "@ui/Text"
 import type { directionDataType } from "../../../../../../types/directionData.type"
-import styles from "./DirectionInfo.module.scss"
+import styles from "./DirectionTimeInfo.module.scss"
 
-type DirectionInfoProps = {
+type DirectionTimeInfoProps = {
 	className?: string
 	direction?: "toTrip" | "fromTrip"
 	data?: directionDataType
 }
-export const DirectionInfo = TypedMemo((props: DirectionInfoProps) => {
+export const DirectionTimeInfo = TypedMemo((props: DirectionTimeInfoProps) => {
 	const { className, data, direction = "toTrip" } = props
 
 	return (
@@ -24,7 +24,7 @@ export const DirectionInfo = TypedMemo((props: DirectionInfoProps) => {
 		>
 			<VStack
 				gap={"XXS"}
-				className={styles.DirectionInfo}
+				className={styles.DirectionTimeInfo}
 			>
 				<Text
 					fontSizeText={"m"}
@@ -59,7 +59,7 @@ export const DirectionInfo = TypedMemo((props: DirectionInfoProps) => {
 					<ArrowClearToIcon className={styles.arrow} />
 				:	<ArrowClearFromIcon className={styles.arrow} />}
 			</VStack>
-			<VStack className={styles.DirectionInfo}>
+			<VStack className={styles.DirectionTimeInfo}>
 				<Text
 					text={convertSecondsToTime(data?.to.datetime || 0, true)}
 					fontSizeText={"m"}

@@ -1,36 +1,49 @@
+import { getRouteTicket } from "@config/router"
 import type { testingProps } from "@customTypes/testing.types"
 import {
 	DirectionCard,
-	directionsListSliceReducers,
+	type directionGeneralDataType,
 	useGetDirectionsListDataSelector,
 	useGetDirectionsListErrorSelector,
 	useGetDirectionsListIsLoadingSelector
 } from "@entities/Direction"
+import { useGetFormForSearchOfDirectionsDataForRequestSelector } from "@features/FillingFormForSearchOfDirections"
 import { OverlayLoader } from "@features/OverlayLoader"
 import { classNamesHelp } from "@helpers/classNamesHelp/classNamesHelp"
-import type { asyncReducersList } from "@hooks/useAsyncReducer.hook"
-import { useAsyncReducer } from "@hooks/useAsyncReducer.hook"
+import { createQueryParams } from "@helpers/createLinkWithParams/createLinkWithParams.helper"
 import { TypedMemo } from "@sharedProviders/TypedMemo"
 import { VStack } from "@ui/Stack"
 import { Text } from "@ui/Text"
 import type { ReactNode } from "react"
+import { useCallback } from "react"
+import { useNavigate } from "react-router-dom"
 import styles from "./DirectionsList.module.scss"
 
 type DirectionsListProps = {
 	className?: string
 } & testingProps
 
-const asyncReducer: asyncReducersList = {
-	directionsList: directionsListSliceReducers
-}
 export const DirectionsList = TypedMemo((props: DirectionsListProps) => {
 	const { className, isTestLoading = false } = props
-
-	useAsyncReducer(asyncReducer)
 
 	const data = useGetDirectionsListDataSelector()
 	const isLoading = useGetDirectionsListIsLoadingSelector()
 	const error = useGetDirectionsListErrorSelector()
+	const formParametres = useGetFormForSearchOfDirectionsDataForRequestSelector()
+
+	const navigate = useNavigate()
+
+	const onChoiceDirectionHandler = useCallback(
+		(direction: directionGeneralDataType) => {
+			const params = {
+				...formParametres,
+				directionId: direction?.departure?._id
+			}
+
+			navigate(createQueryParams(getRouteTicket(direction?.id).route, params))
+		},
+		[formParametres, navigate]
+	)
 
 	let content: ReactNode = (
 		<>
@@ -38,6 +51,7 @@ export const DirectionsList = TypedMemo((props: DirectionsListProps) => {
 				<DirectionCard
 					key={direction.id}
 					data={direction}
+					onClick={onChoiceDirectionHandler}
 				/>
 			))}
 		</>

@@ -26,19 +26,20 @@ const ChooseTrainPage = memo(() => {
 	const dispatch = useAppDispatch()
 
 	const onSearchHandler = useCallback(() => {
-		dispatch(fetchDirectionsListThunk())
+		dispatch(fetchDirectionsListThunk({ namePage: pagePath.route }))
 	}, [dispatch])
 	const { clearParametres } = useFormForSearchDirectionsActions()
 
 	const [searchParams] = useSearchParams()
 
 	useEffect(() => {
-		dispatch(fetchInitialDirectionListThunk(searchParams))
+		dispatch(fetchInitialDirectionListThunk({ searchParams, namePage: pagePath.route }))
 
 		return () => {
 			clearParametres()
 		}
-	}, [clearParametres, dispatch, searchParams])
+		//eslint-disable-next-line
+	}, [])
 
 	const contentPage = (
 		<>
@@ -63,7 +64,7 @@ const ChooseTrainPage = memo(() => {
 							<FilterDirections onSearch={onSearchHandler} />
 							<LastTickets />
 						</VStack>
-						<DisplaySettingsDirectionsList>
+						<DisplaySettingsDirectionsList namePage={pagePath.route}>
 							<DirectionsList />
 						</DisplaySettingsDirectionsList>
 					</HStack>

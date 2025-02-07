@@ -12,9 +12,9 @@ export type {
 export { fetchDirectionsThunk } from "./store/thunks/fetchDirections/fetchDirections.thunk"
 
 export {
-	directionsListSliceReducers,
-	directionsListSliceActions,
-	useDirectionsListSliceUseActions
+	directionsListReducers,
+	directionsListActions,
+	useDirectionsListUseActions
 } from "./store/slices/directionsList.slice"
 
 export {
@@ -28,6 +28,7 @@ export {
 } from "./store/selectors/getDirectionsListProperties/getDirectionsListProperties.selector"
 
 export { DirectionCard } from "./components/DirectionCard/DirectionCard"
+export { DirectionInfo } from "./components/DirectionInfo/DirectionInfo"
 
 // mocks
 export { directionGeneralDataMock } from "./lib/mocks/directionGeneralData.mock"

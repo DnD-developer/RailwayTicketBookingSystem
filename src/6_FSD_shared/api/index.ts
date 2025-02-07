@@ -1,2 +1,8 @@
 export { rtkBaseApi } from "./instances/rtkBase.api"
-export { getSubscribeRequestPaths } from "./libs/gettersRequestPaths.helper"
+export {
+	getSubscribeRequestPaths,
+	getCitiesRequestPaths,
+	getDirectionsRequestPaths,
+	getLastDirectionsRequestPaths,
+	getCarriageInfoRequestPaths
+} from "./libs/gettersRequestPaths.helper"

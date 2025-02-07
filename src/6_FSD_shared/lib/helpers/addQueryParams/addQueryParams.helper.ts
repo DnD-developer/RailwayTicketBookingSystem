@@ -1,7 +1,10 @@
 import type { paramsType } from "@customTypes/common.types"
 
-export function createQueryParams<T extends string | number | boolean>(params?: paramsType<T>) {
-	const searchParams = new URLSearchParams(window.location.search)
+export function createQueryParams<T extends string | number | boolean>(
+	params?: paramsType<T>,
+	page?: string
+) {
+	const searchParams = new URLSearchParams()
 
 	if (!params) return null
 
@@ -11,9 +14,12 @@ export function createQueryParams<T extends string | number | boolean>(params?: 
 		}
 	})
 
-	return `?${searchParams}`
+	return `#${page || "/"}?${searchParams}`
 }
 
-export function addQueryParams<T extends string | number | boolean>(params?: paramsType<T>) {
-	window.history.pushState(undefined, "", createQueryParams(params))
+export function addQueryParams<T extends string | number | boolean>(
+	params?: paramsType<T>,
+	namePage?: string
+) {
+	window.history.pushState({}, "", createQueryParams(params, namePage))
 }

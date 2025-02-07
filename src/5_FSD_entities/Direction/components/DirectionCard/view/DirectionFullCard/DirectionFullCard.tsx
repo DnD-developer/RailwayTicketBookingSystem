@@ -1,41 +1,27 @@
-import { getRouteTicket } from "@config/router"
 import { classNamesHelp } from "@helpers/classNamesHelp/classNamesHelp"
 import { TypedMemo } from "@sharedProviders/TypedMemo"
 import { Button } from "@ui/Button"
 import { HStack, VStack } from "@ui/Stack"
-import type { ReactNode } from "react"
-import { useCallback, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useCallback } from "react"
 import type { carriageClassType, carriagePriceType } from "../../../../../Carriage"
 import type { directionGeneralDataType } from "../../../../types/directionData.type"
 import { ServicesIcon } from "../../ui/ServicesIcon/ServicesIcon"
 import styles from "./DirectionFullCard.module.scss"
 import { CarriageInfoItem } from "./ui/CarriageInfoItem/CarriageInfoItem"
-import { DirectionInfo } from "./ui/DirectionInfo/DirectionInfo"
+import { DirectionTimeInfo } from "./ui/DirectionTimeInfo/DirectionTimeInfo"
 import { TrainInfo } from "./ui/TrainInfo/TrainInfo"
 
 type DirectionFullCardProps = {
 	className?: string
 	data?: directionGeneralDataType
-	detailedPrice?: ReactNode
+	onClick?: () => void
 }
 export const DirectionFullCard = TypedMemo((props: DirectionFullCardProps) => {
-	const { className, data, detailedPrice } = props
+	const { className, data, onClick } = props
 
-	const navigate = useNavigate()
-
-	const [isOpenDetailedPrice, setIsOpenDetailedPrice] = useState<boolean>(false)
-
-	const onDetailedPriceShowHandler = useCallback(() => {
-		setIsOpenDetailedPrice(prev => !prev)
-	}, [])
-
-	//eslint-disable-next-line
-	const onClick = useCallback(() => {
-		if (data?.id) {
-			navigate(getRouteTicket(data?.id).route)
-		}
-	}, [data?.id, navigate])
+	const onClickHandler = useCallback(() => {
+		onClick?.()
+	}, [onClick])
 
 	return (
 		<HStack
@@ -59,12 +45,12 @@ export const DirectionFullCard = TypedMemo((props: DirectionFullCardProps) => {
 				className={styles.directionsInfo}
 				gap={"XL"}
 			>
-				<DirectionInfo
+				<DirectionTimeInfo
 					data={data?.departure}
 					direction={"toTrip"}
 				/>
 				{data?.arrival ?
-					<DirectionInfo
+					<DirectionTimeInfo
 						data={data?.arrival}
 						direction={"fromTrip"}
 					/>
@@ -84,10 +70,7 @@ export const DirectionFullCard = TypedMemo((props: DirectionFullCardProps) => {
 							return (
 								<CarriageInfoItem
 									key={index}
-									detailedPrice={detailedPrice}
 									data={data}
-									onDetailedPriceShow={onDetailedPriceShowHandler}
-									isOpenDetailedPrice={isOpenDetailedPrice}
 									carriageClass={carriageClass}
 									carriagePrice={carriagePrice}
 								/>
@@ -109,7 +92,7 @@ export const DirectionFullCard = TypedMemo((props: DirectionFullCardProps) => {
 						theme={"defaultLight"}
 						height={"s"}
 						width={"s"}
-						onClick={onClick}
+						onClick={onClickHandler}
 					>
 						Выбрать места
 					</Button>

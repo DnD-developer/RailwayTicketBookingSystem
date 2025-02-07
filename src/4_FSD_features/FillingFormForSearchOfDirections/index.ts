@@ -10,3 +10,5 @@ export {
 	useGetFormForSearchOfDirectionsDataSelector,
 	useGetFormForSearchOfDirectionsDataForRequestSelector
 } from "./store/selectors/getFormForSearchOfDirectionsProperty/getFormForSearchOfDirectionsProperty.selector"
+
+export { parseFormDataFromUrlHelper } from "./lib/helpers/parseFormDataFromUrl/parseFormDataFromUrl.helper"

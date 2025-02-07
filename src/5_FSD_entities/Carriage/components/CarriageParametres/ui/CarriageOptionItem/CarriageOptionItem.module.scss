@@ -1,0 +1,26 @@
+.CarriageOptionItem {
+	width: 36px;
+	height: 36px;
+
+	border: 1px solid var(--main-gray);
+	border-radius: 5px;
+
+	background-color: transparent;
+}
+
+.icon {
+	width: auto;
+	height: 20px;
+
+	color: var(--main-gray);
+}
+
+.active {
+	border: none;
+
+	background-color: var(--accent-orange);
+
+	.icon {
+		color: var(--main-light);
+	}
+}

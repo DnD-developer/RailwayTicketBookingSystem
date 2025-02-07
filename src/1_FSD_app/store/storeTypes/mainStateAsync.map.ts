@@ -1,7 +1,3 @@
-import type { directionsListStateMap } from "@entities/Direction"
-
-export type mainStateAsyncMap = {
-	directionsList?: directionsListStateMap
-}
+export type mainStateAsyncMap = object
 
 export type mainStateAsyncKeys = keyof mainStateAsyncMap

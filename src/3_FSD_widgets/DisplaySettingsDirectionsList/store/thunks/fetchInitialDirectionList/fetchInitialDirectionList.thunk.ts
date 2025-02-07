@@ -4,20 +4,28 @@ import { createAsyncThunk } from "@reduxjs/toolkit"
 import type { thunkConfigType } from "@store/storeTypes/thunks.type"
 import { fetchDirectionsListThunk } from "../fetchDirectionsListThunk/fetchDirectionsList.thunk"
 
+type settingsType = {
+	namePage?: string
+	searchParams?: URLSearchParams | undefined
+}
+
 export const fetchInitialDirectionListThunk = createAsyncThunk<
 	undefined,
-	URLSearchParams | undefined,
+	settingsType,
 	thunkConfigType<undefined>
->("DisplaySettingsDirectionsList/fetchInitialDirectionList", (searchParams, thunkAPI) => {
-	const { dispatch } = thunkAPI
+>(
+	"DisplaySettingsDirectionsList/fetchInitialDirectionList",
+	({ searchParams, namePage }, thunkAPI) => {
+		const { dispatch } = thunkAPI
 
-	const [formData, displayData] = parseFormDataFromUrlHelper(searchParams)
+		const { formData, displayData } = parseFormDataFromUrlHelper(searchParams)
 
-	const { setParametres, setDisplayParametres } = formForSearchDirectionsActions
+		const { setParametres, setDisplayParametres } = formForSearchDirectionsActions
 
-	dispatch(setParametres(formData))
-	dispatch(setDisplayParametres(displayData))
-	dispatch(fetchDirectionsListThunk())
+		dispatch(setParametres(formData))
+		dispatch(setDisplayParametres(displayData))
+		dispatch(fetchDirectionsListThunk({ isAllowedUpdateParams: false, namePage }))
 
-	return undefined
-})
+		return undefined
+	}
+)

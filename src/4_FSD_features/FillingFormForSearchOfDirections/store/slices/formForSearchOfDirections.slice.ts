@@ -16,8 +16,6 @@ const initialState: formForSearchOfDirectionsStateMap = {
 	}
 }
 
-// To Feature сделать сохранение формы в params страницы
-
 const formForSearchOfDirectionsSlice = buildSlice({
 	name: "formForSearchOfDirections",
 	initialState,
